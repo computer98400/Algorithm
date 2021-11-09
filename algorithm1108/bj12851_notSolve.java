@@ -4,17 +4,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class bj1697 {
+public class bj12851_notSolve {
 
     public static int[] Arr = new int[200001];
+    static int Min = Integer.MAX_VALUE;
+    static int count = 0;
 
     public static void test(int start, int end) {
         Queue<Integer> test = new LinkedList<>();
-
-        if (start == end) {
-            System.out.println(0);
-            return;
-        }
 
         test.offer(start);
         Arr[start] = 1;
@@ -35,8 +32,9 @@ public class bj1697 {
                 }
 
                 if (step == end) {
-                    System.out.println(Arr[temp]); // 모든 위치의 시간값이 저장됨.
-                    return;
+                    Min = Math.min(Min, Arr[temp]) + 1;
+                    count++;
+                    continue;
                 }
                 // 문제의 부분 //////////////////////////////
                 if (step >= 0 && step < Arr.length && Arr[step] == 0) {
@@ -53,7 +51,16 @@ public class bj1697 {
         int start = sc.nextInt();
         int end = sc.nextInt();
         sc.close();
-        test(start, end);
+        if (start == end) {
+            System.out.println(0);
+            System.out.println(1);
+
+        } else {
+            test(start, end);
+
+            System.out.println(Min);
+            System.out.println(count);
+        }
 
     }
 
