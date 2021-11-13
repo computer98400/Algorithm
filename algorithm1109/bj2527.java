@@ -1,4 +1,4 @@
-package algorithm1109;
+package Algorithm.algorithm1109;
 
 import java.util.Scanner;
 
@@ -34,8 +34,10 @@ public class bj2527 {
                 }
             }
         }
-        int include = (p - x) * (q - y);
+        //int include = (p - x) * (q - y);
         System.out.println(count);
+        sc.close();
+
     }
 
 }
