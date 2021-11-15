@@ -1,4 +1,4 @@
-package algorithm1110;
+package Algorithm.algorithm1110;
 
 import java.util.LinkedList;
 import java.util.Queue;

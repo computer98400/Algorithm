@@ -1,4 +1,4 @@
-package algorithm1109;
+package Algorithm.algorithm1109;
 
 import java.util.Scanner;
 
@@ -56,6 +56,7 @@ public class bj1929 {
             if (!prime[i])
                 System.out.println(i);
         }
+        sc.close();
     }
 
 }
