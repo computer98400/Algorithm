@@ -68,6 +68,7 @@ public class bj4963 {
             System.out.println(solution);
             land = 2;
         }
+        sc.close();
     }
 
 }
