@@ -41,7 +41,9 @@ class graphLinkedList {
     }
 
     public void addEdge(int x, int y) {
+        // single way
         listGraph.get(x).add(y);
+        // way
         // listGraph.get(y).add(x);
     }
 
