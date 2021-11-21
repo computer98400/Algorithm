@@ -1,4 +1,4 @@
-package Algorithm.algorithm1113;
+package algorithm1113;
 
 import java.util.Arrays;
 import java.util.LinkedList;
