@@ -1,4 +1,4 @@
-package algorithm1115;
+package Algorithm.DataStructure;
 
 import java.util.ArrayList;
 import java.util.Scanner;

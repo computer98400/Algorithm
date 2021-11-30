@@ -1,4 +1,4 @@
-package algorithm1115;
+package Algorithm.DataStructure;
 
 public class mkTree {
 
