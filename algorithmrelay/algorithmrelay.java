@@ -1,4 +1,4 @@
-package Algorithm.algorithm1201;
+package Algorithm.algorithmrelay;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class algorithmrelay {
 
         for (int r = 0; r < Tc; r++) {
 
-            System.out.println("=======================================================================================================================");
+            System.out.println();
 
             int n =  (int)Math.round(Math.random()*100%20);
             int m = (int)Math.round(Math.random()*100%(n*n));
@@ -28,11 +28,11 @@ public class algorithmrelay {
                 }
                 System.out.println();
             }
-            for (int i = 0; i < idle.length; i++) {
+            for (int i = 1; i < idle.length; i++) {
+
                 for (int j = 0; j < 2; j++) {
                     idle[i][j] = (int)Math.round(Math.random()*100%n);
                     System.out.print(idle[i][j]+" ");
-
                 }
                 System.out.println();
             }
