@@ -3,7 +3,7 @@ package Algorithm.algorithm1206;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -14,7 +14,7 @@ public class bj2206 {
     public static int[][] map;
     public static int[] dirX = {0,0,1,-1};
     public static int[] dirY = {1,-1,0,0};
-    public static boolean[][] visited;
+    public static int[][] visited;
     public static int solution;
     // 기존에 좌표값과 맵을 통해서 표시하고 판단했다면
     // 해당 문제의 내용은 좌표값과 visited배열을 통해서 판단하게 된다.
@@ -50,18 +50,20 @@ public class bj2206 {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
         map = new int[N][M];
-        visited = new boolean[N][M];
+        visited = new int[N][M];
         solution = Integer.MAX_VALUE;
         for (int i = 0; i < N; i++) {
             String temp = br.readLine();
             for (int j = 0; j < M; j++) {
-                if(temp.charAt(j) ==  '1'){
-                    visited[i][j] = true;
-                    map[i][j] = 999;
-                }
+                map[i][j] = temp.charAt(j)-'0';
+                visited[i][j] = Integer.MAX_VALUE;
             }
         }
-        bfs();
+        if(N != 1 && M != 1){
+            bfs();
+        }else{
+            solution = 1;
+        }
 
         if(solution == Integer.MAX_VALUE){
             System.out.println("-1");
@@ -73,38 +75,39 @@ public class bj2206 {
     static void bfs(){
         //상태관리를 포함한 node클래스를 통해 queue를 만든다.
         Queue<node> test = new LinkedList<>();
-        
+        // for (int i = 0; i < map.length; i++) {
+        //     System.out.println(Arrays.toString(map[i]));
+        // }
         //시작위치 및 거리값 추가.
         test.offer(new node(0,0,1,0));
-        visited[0][0] = true;
+        visited[0][0] = 0;
         //visited에 벽에 대한 정보와 방문 정보를 같이 담게 되면 해결?
 
         while (!test.isEmpty()) {
             node temp = test.poll();
-            
-            if(temp.y == map.length-1 && temp.x == map[0].length-1){
-             //   System.out.println("check");
-             //   System.out.println("solution : "+temp.distance);
-                solution = temp.distance;
-                break;
-            }
+           // System.out.println(temp.y+" "+temp.x);
             for (int i = 0; i < dirX.length; i++) {
                 int tempY = temp.y + dirY[i];
                 int tempX = temp.x + dirX[i];
-                if(tempY>= 0 && tempY < map.length && tempX>= 0 && tempX < map[0].length){
-                    if(!visited[tempY][tempX]) {
+                if(tempY == map.length-1 && tempX == map[0].length-1){
+                    solution = temp.distance+1;
+                    return;
+                }
+                if(tempY>= 0 && tempY < map.length && tempX>= 0 && tempX < map[0].length && visited[tempY][tempX] > temp.broke){
+                    //System.out.println("pos");
+                    if(map[tempY][tempX] == 0){
+                    //    System.out.println("Add pos : "+tempY+" "+tempX);
+                        visited[tempY][tempX] = temp.broke;
                         test.offer(new node(tempY,tempX,temp.distance+1,temp.broke));
-                        visited[tempY][tempX] = true;
-                    } else {
-                       //System.out.println("meet walls!"+"  tempY : "+tempY+" tempX : "+tempX);
+                    }else{
                         if(temp.broke == 0){
-                            System.out.println("broke wall!========tempY : "+tempY+"tempX : "+tempX);
+                            visited[tempY][tempX] = temp.broke+1;
                             test.offer(new node(tempY,tempX,temp.distance+1,temp.broke+1));
-                            visited[tempY][tempX] = true;
                         }
                     }
                 }
             }
+          
         }
     }
 }
