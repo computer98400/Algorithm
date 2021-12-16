@@ -25,7 +25,12 @@ public class bj7562 {
                 System.out.println(pos[2]);
                 return;
             }
-
+            //맵 변경을 무조건 안해야됨
+            //재방문시 표시된 시간보다 작을때 갱신
+            //벽 넘어서 이동하기?
+            //사용자 입력에서 받는 뛰는 갯수
+            //4방탐색 + 뛴자리 = 재방문시 표시된 시간 작을때 갱신
+            //4방탐색 + 위아래
             for (int i = 0; i < dirY.length; i++) {
                 
                 int tempY = pos[0] + dirY[i];
