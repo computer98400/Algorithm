@@ -9,10 +9,12 @@ public class binarySearch {
     public static int binary(int[] numbers,int searchN) {
         Arrays.sort(numbers);
         int left = 0;
-        int right =  numbers.length-1;
+        int right = numbers.length - 1;
+        
         while (left <= right) {
             int mid = (left + right) / 2;
-            
+            //함수
+            //기준 길이보다 크면서 제일 작은값 출력
             if (numbers[mid] == searchN) {
                 return 1;
             }
@@ -25,7 +27,8 @@ public class binarySearch {
         }
         return 0;
     }
-
+    //함수 역할
+    //해당 인덱스부터 끝까지 쭉 더하기
 
 
     public static void main(String[] args) {
