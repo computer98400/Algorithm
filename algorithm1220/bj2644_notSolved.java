@@ -3,7 +3,7 @@ package algorithm1220;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class bj2644 {
+public class bj2644_notSolved {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
