@@ -6,6 +6,7 @@ import java.util.Queue;
 public class mkClass {
     //내부클래스
     static class t{
+        int N2 = 3;
         int N;
         int M;
         int H;
