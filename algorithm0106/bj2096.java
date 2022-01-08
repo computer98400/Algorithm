@@ -12,20 +12,23 @@ public class bj2096 {
 
         int N = Integer.parseInt(br.readLine());
 
-        int[][] arr = new int[N][3];
-        int[][] map = new int[N + 1][3];
-        int[][] map2 = new int[N + 1][3];
-        for (int i = 0; i < arr.length; i++) {
+        int[][] arr = new int[N][3];            //원본배열
+
+        int[][] map = new int[N + 1][3];        //최대값
+        int[][] map2 = new int[N + 1][3]; //최소값
+        
+        for (int i = 0; i < arr.length; i++) {          //입력값
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             for (int j = 0; j < arr[0].length; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
             }
-
         }
 
-        for (int i = 1; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                if (j == 0)
+
+        // 0 0 0
+        for (int i = 1; i < map.length; i++) {                 //1 2 3
+            for (int j = 0; j < map[0].length; j++) {          // 01  012  12
+                if (j == 0)                                 
                     map[i][0] = Math.max(map[i - 1][0], map[i - 1][1]) + arr[i - 1][0];
                 if (j == 1)
                     map[i][1] = Math.max(Math.max(map[i - 1][0], map[i - 1][1]), map[i - 1][2]) + arr[i - 1][1];
@@ -33,7 +36,7 @@ public class bj2096 {
                     map[i][2] = Math.max(map[i - 1][1], map[i - 1][2]) + arr[i - 1][2];
             }
         }
-        
+        //최소값
         for (int i = 1; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 if (j == 0)
