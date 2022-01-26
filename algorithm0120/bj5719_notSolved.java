@@ -30,11 +30,10 @@ public class bj5719_notSolved {
             return 1;
         }
     }
-
     static class graph {
         int V;
         ArrayList<ArrayList<node>> g;
-
+        
         graph(int V) {
             this.V = V;
             this.g = new ArrayList<ArrayList<node>>();
@@ -42,26 +41,34 @@ public class bj5719_notSolved {
                 this.g.add(new ArrayList<node>());
             }
         }
-
+        
         void addVertex(int start, int end, int value) {
             this.g.get(start).add(new node(end, value,""));
         }
-
+        
         ArrayList<node> getVertex(int check) {
             return this.g.get(check);
         }
-    }
 
+        int getDistance(int start, int i) {
+            return this.g.get(start).get(i).value;
+        }
+
+        void removeVertext(int start, int end) {
+            this.g.get(start).remove(end);
+        }
+    }
+    
     static boolean[] visited;
     static boolean[] visited2;
     
     static int[] daikstra;
-
+    
     static graph g;
-
+    
     static void bfs(int S, int E) {
         PriorityQueue<node> que = new PriorityQueue<>();
-
+        
         que.offer(new node(S, 0, ""));
         daikstra[S] = 0;
         while (!que.isEmpty()) {
@@ -76,42 +83,30 @@ public class bj5719_notSolved {
                 }
             }
         }
+        
+        //구간합  마지막값 - 현재까지의 합 = 현재부터 마지막까지의 값
         System.out.println(Arrays.toString(daikstra));
     }
-
-    static class hap {
-        int E;
-        int hap;
-        
-        hap(int E, int hap) {
-            this.E = E;
-            this.hap = hap;
-        }
-    
-    }
-
     static ArrayList<Integer> test = new ArrayList<Integer>();
-
+    
+    //그래프에서 해당 노드의 거리값  A->B가는 값을 탐색하는걸 먼저 확인하고.
+    //현재 Daikstra[N] = Daikstra[i] + (daikstra[N] - graph.get(i).거리값);
     static void bfs2(int S,int E) {
-        Queue<node> que = new LinkedList<>();
-        que.offer(new node(S, 0,""));
+        Queue<Integer> que = new LinkedList<>();
+        que.offer(E);
         while (!que.isEmpty()) {
-            node pos = que.poll();
-            
-            
-            if (pos.E == E) {
-                test.add(pos.value);
-            }
-
-            if (!visited2[pos.E]) {
-                visited2[pos.E] = true;
-                for (node temp : g.getVertex(pos.E)) {
-                    que.offer(new node(temp.E, pos.value + temp.value, ""));
+            int pos = que.poll();
+            for (int temp = 0; temp < daikstra.length; temp++) {
+                for (int j = 0; j < 4; j++) {
+                    if (daikstra[pos] == daikstra[temp] + g.getDistance(temp,j)) {
+                        System.out.println(temp);
+                        g.removeVertext(temp, pos);
+                    }
                 }
             }
         }
     }
-
+    
     public static void main(String[] args) throws NumberFormatException, IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -147,17 +142,6 @@ public class bj5719_notSolved {
             bfs(startNode, endNode);
         
             bfs2(startNode, endNode);
-            test.sort(null);
-            System.out.println(test.toString());
-            int solution = -1;
-            for (int i = 0; i < test.size(); i++) {
-                if (test.get(i) > daikstra[endNode]) {
-                    solution = test.get(i);
-                    break;
-                }
-            }
-
-            System.out.println(solution);
         }
 
     }
