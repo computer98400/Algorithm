@@ -9,8 +9,7 @@ public class bj13335 {
 
     public static void truckTest() {
         if (bridge[bridge.length - 1] == 0) {
-            
-            trucks[checking]
+      
         }
     }
 
