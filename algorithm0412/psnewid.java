@@ -9,7 +9,7 @@ public class psnewid {
         //2
         for (int i = 0; i < new_id.length(); i++) {
             if (new_id.charAt(i) == '.' || new_id.charAt(i) == '_' || new_id.charAt(i) == '-'
-                    || (new_id.charAt(i) >= 'a' && new_id.charAt(i) <= 'z')) {
+                    || (new_id.charAt(i) >= 'a' && new_id.charAt(i) <= 'z') || (new_id.charAt(i) >= '0' && new_id.charAt(i) <= '9')) {
                 temp += new_id.charAt(i);
             }
         }
