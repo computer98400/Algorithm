@@ -40,6 +40,13 @@ public class psreportresult {
                 list.get(temp[0]).add(temp[1]);
             }
         }
+        System.out.println("check : "+list.keySet());
+        System.out.println(list.toString());
+        System.out.println(count.toString());
+        System.out.println(result.toString());
+        
+
+
         for (Entry<String,Integer> elem : result.entrySet()) {
             if (result.get(elem.getKey()) >= k) {
                 for (int i = 0; i < count.get(elem.getKey()).size(); i++) {
