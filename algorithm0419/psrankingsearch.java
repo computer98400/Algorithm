@@ -6,44 +6,57 @@ import java.util.Collections;
 
 public class psrankingsearch {
     public static int[] solution(String[] info, String[] query) {
-        int[] answer = {};
+        int[] answer = new int[info.length];
         String[][] total = new String[info.length][5];
 
         for (int i = 0; i < info.length; i++) {
             total[i] = info[i].split(" ");
-            System.out.println(Arrays.toString(total[i]));
         }
 
         for (int i = 0; i < query.length; i++) {
             ArrayList<Integer> temp = new ArrayList<>();
-            String[] test = query[i].split("and");
-            for (int q = 0; q < test.length; q++) {
-                test[q] = test[q].trim();
+            int trash = info.length-1;
+            for (int d = 0; d < total.length; d++) {
+                temp.add(0);
             }
 
-            System.out.println(Arrays.toString(test));
-
-            
-
-            for (int j = 0; j < test.length; j++) {
-                if (test[j].contains("-")) {
-                    for (int p = 0; p < info.length; p++) {
-                        temp.add(p);
-                    }
+            String[] check = new String[5];
+            String[] test = query[i].split(" and ");
+            for (int j = 0; j < test.length - 1; j++) {
+                check[j] = test[j];
+            }
+            String[] show = test[3].split(" ");
+            check[3] = show[0];
+            check[4] = show[1];
+            for (int q = 0; q < check.length - 1; q++) {
+                if (check[q].equals("-")) {
+                    trash--;
                 } else {
-                    for (int k = 0; k < total.length; k++) {
-                        if (total[k][j].contains(test[j])) {
-                            temp.add(k);
+                    for (int p = 0; p < total.length; p++) {
+                        if (check[q].equals(total[p][q])) {
+                            temp.set(p, temp.get(p) + 1);
+
                         }
                     }
                 }
             }
-            Collections.sort(temp);
-            System.out.println(temp.toString());
+
+            for (int k = 0; k < total.length; k++) {
+                int score = Integer.parseInt(total[k][4]);
+                System.out.println(Integer.parseInt(check[4])+" "+score);
+                if (score >= Integer.parseInt(check[4])) {
+                    temp.set(k, temp.get(k) + 1);
+                }
+            }
+            // System.out.println(temp.toString()+" "+trash);
+            for (int h = 0; h < temp.size(); h++) {
+                if (temp.get(h) == trash) {
+                    answer[i]++;
+                }
+            }
 
         }
-
-
+        // System.out.println(Arrays.toString(answer));
         return answer;
     }
     
