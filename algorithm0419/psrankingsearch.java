@@ -28,6 +28,8 @@ public class psrankingsearch {
             String[] show = test[3].split(" ");
             check[3] = show[0];
             check[4] = show[1];
+
+            //조회 5 ,4, 3,2,1
             for (int q = 0; q < check.length - 1; q++) {
                 if (check[q].equals("-")) {
                     trash--;
@@ -35,7 +37,6 @@ public class psrankingsearch {
                     for (int p = 0; p < total.length; p++) {
                         if (check[q].equals(total[p][q])) {
                             temp.set(p, temp.get(p) + 1);
-
                         }
                     }
                 }
@@ -43,18 +44,17 @@ public class psrankingsearch {
 
             for (int k = 0; k < total.length; k++) {
                 int score = Integer.parseInt(total[k][4]);
-                System.out.println(Integer.parseInt(check[4])+" "+score);
+                // System.out.println(Integer.parseInt(check[4])+" "+score);
                 if (score >= Integer.parseInt(check[4])) {
                     temp.set(k, temp.get(k) + 1);
                 }
             }
-            // System.out.println(temp.toString()+" "+trash);
+            System.out.println(temp.toString()+" "+trash);
             for (int h = 0; h < temp.size(); h++) {
                 if (temp.get(h) == trash) {
                     answer[i]++;
                 }
             }
-
         }
         // System.out.println(Arrays.toString(answer));
         return answer;
