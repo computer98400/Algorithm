@@ -5,14 +5,10 @@ public class psstringzip {
 
     public static int solution(String s) {
         int a = 1;
-
-
         int answer = 1001;
         if (s.length() == 1) {
             return 1;
         }
-
-
         while (a <= s.length() / 2) {
 
             StringBuilder sb = new StringBuilder();
