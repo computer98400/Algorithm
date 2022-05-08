@@ -47,13 +47,10 @@ public class psfindmap {
             return this.key;
         }
 
-        public void setKey(int Key) {
-            this.key = Key;
-        }
 
-        public void getCurrentKV() {
-            System.out.println(this.value + " " + this.key);
-        }
+        // public void getCurrentKV() {
+        //     System.out.println(this.value + " " + this.key);
+        // }
     }
 
     public static Node test;
@@ -62,6 +59,8 @@ public class psfindmap {
     public static int[] preresult;
     public static int[] afterresult;
     public static int count = 0;
+
+
     public static void pre(Node temp) {
         if (temp != null) {
             answer[0][count] = temp.getKey();
@@ -70,6 +69,7 @@ public class psfindmap {
             pre(temp.getRight());
         }
     }
+
     public static void after(Node temp) {
         if (temp != null) {
             after(temp.getLeft());
@@ -78,6 +78,7 @@ public class psfindmap {
             count++;
         }
     }
+    
     public static void insert(int value, int key) {
         Node newNode = new Node(value, key);
         if (test == null) {
@@ -115,7 +116,8 @@ public class psfindmap {
         answer = new int[2][nodeinfo.length];
         preresult = new int[nodeinfo.length];
         afterresult = new int[nodeinfo.length];
-
+        // 5 , 3, 1 
+        // 11, 5, 2 
         int[][] temp = new int[nodeinfo.length][3];
         for (int i = 0; i < nodeinfo.length; i++){
             temp[i][0] = nodeinfo[i][0];
@@ -133,9 +135,9 @@ public class psfindmap {
             }
         });
 
-        // for (int i = 0; i < nodeinfo.length; i++) {
-        //     System.out.println(Arrays.toString(temp[i]));
-        // }
+        for (int i = 0; i < nodeinfo.length; i++) {
+            System.out.println(Arrays.toString(temp[i]));
+        }
         for (int i = 0; i < nodeinfo.length; i++) {
             // System.out.println(i + " value : " + nodeinfo[i][0] + " key : " + nodeinfo[i][1]);
             insert(temp[i][0], temp[i][2]);
