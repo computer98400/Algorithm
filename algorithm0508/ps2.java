@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 public class ps2 {
     public static String[] solution(String[] rooms, int target) {
+        
         String[] answer = {};
         int[] roomnum = new int[rooms.length];
         ArrayList<String[]> person = new ArrayList<>();

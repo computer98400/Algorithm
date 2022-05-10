@@ -12,8 +12,6 @@ public class pskeypad {
         char[] numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' } ;
         char[] temp = {'Q','W','E','R','T','Y','U','I','O','P'} ;
 
-
-
         for (int i = 0; i < line.length(); i++) {
             //문자 위치 찾기
             int[] pos = new int[2];

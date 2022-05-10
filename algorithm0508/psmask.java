@@ -4,18 +4,20 @@ public class psmask {
     
     public static int solution(int[][] atmos) {
         int answer = 0;
+        //마스크를 썼는가 안쓰는가
         boolean flag = false;
+        //+2일까지 사용하는가 안하는가
         int daycount = 0;
+
         for (int i = 0; i < atmos.length; i++) {
 
             if (atmos[i][0] >= 151 && atmos[i][1] >= 76) {
-
                 flag = false;
                 answer++;
                 daycount = 0;
                 continue;
             }
-
+            
             if (daycount == 2) {
                 answer++;
                 daycount = 0;
