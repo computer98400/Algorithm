@@ -12,26 +12,19 @@ public class bj10799 {
         String temp = br.readLine();
 
         Stack<Integer> test = new Stack<>();
-        Stack<Integer> cut = new Stack<>(); 
         int count = 0;
-        boolean cutflag = false;
-        for (int i = 1; i < temp.length(); i++) {
-            if (temp.charAt(i) == ')') {
-                if (temp.charAt(i - 1) == '(') {
-                    if (test.isEmpty()) {
-                        cut.push(i);
-                    } else {
-                        test.pop();
-                        cut.push(i);
-                    }
-                } else {
-                    System.out.println(test.pop() + " " + i);
-                }
+        for (int i = 0; i < temp.length(); i++) {
+            if (temp.charAt(i) == '(') {
+                test.push(1);
             } else {
-                test.push(i);
+                test.pop();
+                if (temp.charAt(i - 1) == '(') {
+                    count += test.size();
+                } else {
+                    count+=1;
+                }
             }
-            // System.out.println(count);
         }
-        System.out.println(cut.toString());
+        System.out.println(count);
     }
 }
