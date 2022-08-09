@@ -6,22 +6,14 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class bj16985{
-    public static int[] floor1;
-    public static int[] floor2;
-    public static int[] floor3;
-    public static int[] floor4;
-    public static int[] floor5;
+    public static int[][] floor;
     public static void combi(int count, int[] numbers,boolean[] visited){
-        if(count == 4){
-            System.out.println(Arrays.toString(numbers));
-                test(0,numbers[0],floor1);
-                test(1,numbers[1],floor2);
-                test(2,numbers[2],floor3);
-                test(3,numbers[3],floor4);
-                test(4,numbers[4],floor5);
-
+        if(count == 5){
+            test(numbers);
+            mapvisited = new boolean[5][5][5];
             return;
         }
 
@@ -34,9 +26,9 @@ public class bj16985{
 
     }
 
-    public static int[] dirX = {0,0,0,0, 1, 1};
-    public static int[] dirY = {0,0,1,1, 0, 0};
-    public static int[] dirZ = {1,1,0,0, 0, 0};
+    public static int[] dirX = {0,0,0,0, 1, -1};
+    public static int[] dirY = {0,0,1,-1, 0, 0};
+    public static int[] dirZ = {1,-1,0,0, 0, 0};
 
     public static boolean[][][] mapvisited;
     public static int[][][] maze;
@@ -52,7 +44,6 @@ public class bj16985{
 
             if(temp[0] == 4 && temp[1] == 4 && temp[2] == 4){
                 solution = Math.min(temp[3], solution);
-                System.out.println(temp[3]);
                 return;
             }
 
@@ -63,7 +54,7 @@ public class bj16985{
                 int tempz = temp[2] + dirZ[i];
 
 
-                if(tempx >= 0 && tempx < maze.length &&tempy >= 0 && tempy < maze.length && tempz >= 0 && tempz < maze.length && maze[tempx][tempy][tempz] == 0 && !mapvisited[tempx][tempy][tempz]){
+                if(tempx >= 0 && tempx < 5 &&tempy >= 0 && tempy < 5 && tempz >= 0 && tempz < 5 && maze[tempx][tempy][tempz] == 1 && !mapvisited[tempx][tempy][tempz]){
                     que.offer(new int[]{tempx,tempy,tempz, temp[3]+1});
                     mapvisited[tempx][tempy][tempz] = true;
                 }
@@ -73,54 +64,85 @@ public class bj16985{
     }
 
 
-    public static void test(int floor, int dir, int[] map){
+    public static void test(int[] dir){
         int k =0;
-        if(dir ==0){
-            for(int i=0; i<5; i++){
-                for(int j=0; j< 5; j++){
-                    maze[floor][i][j] = map[k++];
-                }
-            }
-        }else if(dir == 1){
-            for(int i=0; i<5; i++){
-                for(int j=4; j>=0; j--){
-                    // System.out.println("i :"+i+" j : "+j+" K : "+(k++));
-                     maze[floor][j][i] = map[k++];
-                }
-            }
-        }else if(dir == 2){
-            for(int i=4; i>=0; i--){
-                for(int j=4; j>=0; j--){
-                    maze[floor][i][j] = map[k++];
-                }
-            }
-        }else if(dir == 3){
-            for(int i=4; i>=0; i--){
-                for(int j=0; j<5; j++){
-                     maze[floor][j][i] = map[k++];
-                }
-            }
 
+        for(int count=0;count<dir.length;count++){
+            if(dir[count] ==0){
+                for(int i=0; i<5; i++){
+                    for(int j=0; j< 5; j++){
+                        maze[count][i][j] = floor[count][k++];
+                        if(maze[count][i][j] == 0){
+                            mapvisited[count][i][j] = true;
+                        }
+                    }
+                }
+            }else if(dir[count] == 1){
+                for(int i=0; i<5; i++){
+                    for(int j=4; j>=0; j--){
+                         maze[count][j][i] = floor[count][k++];
+                         if(maze[count][j][i] == 0){
+                            mapvisited[count][j][i] = true;
+                        }
+                    }
+                }
+            }else if(dir[count] == 2){
+                for(int i=4; i>=0; i--){
+                    for(int j=4; j>=0; j--){
+                        maze[count][i][j] = floor[count][k++];
+                        if(maze[count][i][j] == 0){
+                            mapvisited[count][i][j] = true;
+                        }
+                    }
+                }
+            }else if(dir[count] == 3){
+                for(int i=4; i>=0; i--){
+                    for(int j=0; j<5; j++){
+                        maze[count][j][i] = floor[count][k++];
+                        if(maze[count][j][i] == 0){
+                            mapvisited[count][j][i] = true;
+                        }
+                    }
+                }
+    
+            }
+            k = 0;
         }
 
 
+
+        if(maze[4][4][4] == 0|| maze[0][0][0] == 0 ){
+            
+            return;
+        }
+        bfs();
     }
 
 
     public static void main(String[] args) throws IOException {
         maze = new int[5][5][5];
-
+        mapvisited = new boolean[5][5][5];
         BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
-        floor1 = new int[]{1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        floor = new int[5][25];
+        StringBuilder temp = new StringBuilder();
+        for(int i=0; i<25; i++){
+            temp.append(br.readLine()).append(" ");
+        }
+        StringTokenizer st = new StringTokenizer(temp.toString()," ");
 
-        String[] n = br.readLine().split(" ");
-
-
-        combi(0, new int[4], new boolean[4]);
-
-        for(int i=0; i< 5; i++){
-            System.out.println(Arrays.deepToString(maze[i]));
+        for(int i =0;i<5; i++){
+            for(int j=0; j<25;j++){
+                floor[i][j] = Integer.parseInt(st.nextToken());
+            }
         }
 
+        combi(0, new int[5], new boolean[5]);
+
+        if(solution == Integer.MAX_VALUE){
+            System.out.println(-1);
+        }else{
+            
+            System.out.println(solution);
+        }
     }
 }
