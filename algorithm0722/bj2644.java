@@ -29,25 +29,30 @@ public class MyClass {
             test.add(new ArrayList<Integer>());
         }
         
-        public String showGraph(){
-            return test.toString();
-        }
+
         
-        public void addTwoway(int y, int x){
+        public void addTwoway(int y, int x) {
             test.get(y).add(x);
             test.get(x).add(y);
         }
+        
         public ArrayList getVertex(int pos){
             return test.get(pos);
         }
-        public String showVertex(int pos){
+
+        public String showVertex(int pos) {
             return test.get(pos).toString();
+        }
+
+        public String showGraph(){
+            return test.toString();
         }
     }
     public static boolean solution;
     
     public static void bfs(int start, int end){
         Queue<int[]> que = new LinkedList<>();
+
         visited[start] = true;
         que.add(new int[]{start,0});
         while(!que.isEmpty()){
@@ -60,7 +65,7 @@ public class MyClass {
             }
             ArrayList<Integer> temp2 = test.getVertex(pos[0]);
 
-            
+                ///0 1 2 3 4
             for(int temp : temp2){
                 if(visited[temp]) continue;
                 

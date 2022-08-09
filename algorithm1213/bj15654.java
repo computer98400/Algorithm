@@ -19,9 +19,7 @@ public class bj15654 {
             return;
         }
         for (int i = 0; i < selected.length; i++) {
-            if (selected[i])
-                continue;
-            
+            if (selected[i]) continue;
             numbers[count] = origin[i];
             selected[i] = true;
             permu22(count + 1, N, numbers, selected);
