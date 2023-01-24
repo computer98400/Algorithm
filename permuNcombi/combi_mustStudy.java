@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class combi_mustStudy {
     
-    public static int[] origin;
+    protected static int[] origin;
     
-    public static void combi(int count, int[] numbers, int N, int idx) {
+    public void combi(int count, int[] numbers, int N, int idx) {
         if (count == N) {
             System.out.println(Arrays.toString(numbers));
             return;

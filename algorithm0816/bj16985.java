@@ -22,7 +22,7 @@ public class bj16985 {
 
     public static int[][] origin;
     
-    //
+    //층을 맵에 배치
 
     
     //방향 조합

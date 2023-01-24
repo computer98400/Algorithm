@@ -17,18 +17,20 @@ public class bj2003 {
       
       int start=0;
       int end = 0;
-      while(start<N){
+      while (start < N) {
+        //구간합을 구할 변수
         int test=0;
-        for(int i=start;i<end; i++){
-            test+=numbers[i];
+        for (int i = start; i < end; i++) {
+            test += numbers[i];
         }
         
+        //start가 ++되는 조건 확인.
          if(test >= M || end ==N){
              start++;
          }else{
              end++;
          }
-          
+          //조건에 맞는지 확인.
           if(test == M){
               count++;
           }

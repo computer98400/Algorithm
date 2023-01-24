@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+//플로이드 와샬
 public class bj11403{
     public static void main(String[] args) throws NumberFormatException, IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,7 +17,7 @@ public class bj11403{
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
+        // i= 각 정점   j,k 경로
         for(int i=0; i< N; i++){
             for(int j=0; j< N; j++){
                 for(int k=0; k< N; k++){

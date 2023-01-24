@@ -83,11 +83,31 @@ public class bj17140 {
                 
             }
         }
-
-
     }
+    //각 줄(행, 열)에 해당하는 1차원 배열 뽑아내기
+    public static int[] extract(char dir, int idx) {
+        ArrayList<Integer> test = new ArrayList<>();
+        if (dir == 'r') {
+            for (int i = 0; i < origin.length; i++) {
+                test.add(origin[idx][i]);
+            }
+        } else {
+            for (int i = 0; i < origin[0].length; i++) {
+                test.add(origin[i][idx]);
+            }
+        }
 
 
+        /// 각 숫자 세는 거.
+
+
+        
+        int[] trans = new int[test.size()];
+        for (int i = 0; i < test.size(); i++) {
+            trans[i] = test.get(i);
+        }
+        return trans;
+    }
 
 
 
@@ -122,7 +142,20 @@ public class bj17140 {
         }
         int count = 0;
         while(count <100){
+            if (rowsLen >= columnsLen) {
+                for (int i = 0; i < origin.length; i++) {
+                    int[] temp1 = extract('r', i);
 
+                    
+
+                }
+            } else {
+                for (int i = 0; i < origin[0].length; i++) {
+                    extract('c', i);
+                    int[] temp2 = extract('r', i);
+                }
+                
+            }
 
 
             count++;
