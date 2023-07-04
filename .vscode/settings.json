@@ -1,11 +1,13 @@
 {
   "java.project.sourcePaths": [
+    "algorithm1222",
+    "algorithm0529",
+    "algorithm0521",
     "algorithm0516",
     "algorithm0514",
     "algorithm0508",
     "algorithm0507",
     "algorithm0319",
-    "algorithm0521",
-    "algorithm0529"
+    "algorithm0702"
   ]
 }
