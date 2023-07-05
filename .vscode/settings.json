@@ -1,6 +1,7 @@
 {
   "java.project.sourcePaths": [
     "algorithm1222",
+    "algorithm0704",
     "algorithm0702",
     "algorithm0529",
     "algorithm0521",
@@ -9,6 +10,6 @@
     "algorithm0508",
     "algorithm0507",
     "algorithm0319",
-    "algorithm0704"
+    "algorithm0705"
   ]
 }
